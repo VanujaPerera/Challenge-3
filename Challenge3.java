@@ -2,17 +2,16 @@ import java.util.*;
 
 public class Challenge3 {
 
-    public static int[] sortArray(int array[])
-    {
-        int[] arr =array;
+    public static int[] sortArray(int array[]) {
+        int[] arr = array;
         for (int i = 0; i < arr.length; i++) {
- 
+
             for (int j = i + 1; j < arr.length; j++) {
- 
+
                 // Checking elements
                 int temp = 0;
                 if (arr[j] < arr[i]) {
- 
+
                     // Swapping
                     temp = arr[i];
                     arr[i] = arr[j];
@@ -46,45 +45,65 @@ public class Challenge3 {
         List<Integer> primeList = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
             boolean isPrime = true;
-            for (int j = 2; j < i; j++) {
+            for (int j = 2; j < array[i]; j++) {
 
-                if (i % j == 0) {
+                if (array[i] % j == 0) {
                     isPrime = false;
                     break;
                 }
             }
 
             if (isPrime == true) {
-                primeList.add(i);
+                if ((!(primeList.contains(array[i]))) && array[i]!=1) {
+                    primeList.add(array[i]);
+                }
             }
-
         }
+
         return primeList;
     }
 
     public static double median(int[] array) {
-        int middle = array.length/2;
-        if (array.length%2 == 1) {
+        int middle = array.length / 2;
+        if (array.length % 2 == 1) {
             return array[middle];
         } else {
-            return (array[middle-1] + array[middle]) / 2.0;
+            return (array[middle - 1] + array[middle]) / 2.0;
         }
     }
 
     public static void main(String args[]) {
 
-        int[] array = { 2, 30, -5, 43, 100 };
-        int[] sortedArray = sortArray(array);
+        
+        int inputCount;
 
-        int mode= mode(sortedArray);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of integer you want to add to the array: ");
+        inputCount = scanner.nextInt();
+
+        int[] array= new int[inputCount];
+
+        for(int x=0 ; x<inputCount; x++)
+        {
+            int userInp = 0;
+            System.out.printf("Enter number %d: ", (x+1));
+            userInp = scanner.nextInt();
+
+            array[x] = userInp;
+
+        }
+        int[] sortedArray = sortArray(array);
+        List<Integer> primeList = findPrime(sortedArray);
+
+        int mode = mode(sortedArray);
         double median = median(sortedArray);
 
+        System.out.println("\nSorted Array: " + Arrays.toString(array));
         System.out.println("The median is " + median);
         System.out.println("The mode is " + mode);
-        System.out.println("The largest value is " + sortedArray[-1]);
-        
-
-        
+        System.out.println("The largest value is " + sortedArray[array.length - 1]);
+        System.out.println(
+                "Provided array: " + Arrays.toString(array) + "\n\tThe prime numbers from the array are: " + primeList);
 
     }
 }

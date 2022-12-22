@@ -54,7 +54,7 @@ public class Challenge3 {
             }
 
             if (isPrime == true) {
-                if ((!(primeList.contains(array[i]))) && array[i]!=1) {
+                if ((!(primeList.contains(array[i]))) && array[i] != 1) {
                     primeList.add(array[i]);
                 }
             }
@@ -74,19 +74,17 @@ public class Challenge3 {
 
     public static void main(String args[]) {
 
-        
         int inputCount;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the number of integer you want to add to the array: ");
         inputCount = scanner.nextInt();
 
-        int[] array= new int[inputCount];
+        int[] array = new int[inputCount];
 
-        for(int x=0 ; x<inputCount; x++)
-        {
+        for (int x = 0; x < inputCount; x++) {
             int userInp = 0;
-            System.out.printf("Enter number %d: ", (x+1));
+            System.out.printf("Enter number %d: ", (x + 1));
             userInp = scanner.nextInt();
 
             array[x] = userInp;
